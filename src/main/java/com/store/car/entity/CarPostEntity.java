@@ -16,28 +16,20 @@ public class CarPostEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "model")
     private String model;
 
-    @Column(name = "brand")
     private String brand;
 
-    @Column(name = "price")
     private Double price;
 
-    @Column(name = "description")
     private String description;
 
-    @Column(name = "engine")
     private String engine;
 
-    @Column(name = "city")
     private String city;
 
-    @Column(name = "createdAt")
     private String createdAt;
 
-    @Column(name = "contact")
     private String contact;
 
     @ManyToOne
