@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class CarPostServiceImpl implements CarPostService{
 
@@ -32,13 +33,25 @@ public class CarPostServiceImpl implements CarPostService{
     }
 
     @Override
-    public void changeCarSale(CarPostDTO carPostDTO) {
+    public void changeCarSale(CarPostDTO carPostDTO, Long id) {
+        carPostRepository.findById(id).ifPresentOrElse(item -> {
+            item.setDescription(carPostDTO.getDescription());
+            item.setContact(carPostDTO.getContact());
+            item.setPrice(carPostDTO.getPrice());
+            item.setBrand(carPostDTO.getBrand());
+            item.setCity(carPostDTO.getCity());
+            item.setEngine(carPostDTO.getEngineVersion());
+            item.setModel(carPostDTO.getModel());
 
+            carPostRepository.save(item);
+        },  () -> {
+            throw new NoSuchElementException();
+        });
     }
 
     @Override
     public void removerCarSale(Long carId) {
-
+        carPostRepository.deleteById(carId);
     }
 
     private CarPostDTO mapCarEntityToDTO(CarPostEntity carPostEntity) {

@@ -9,6 +9,6 @@ import java.util.List;
 public interface CarPostService {
     void newPostDetails(CarPostDTO carPostDTO);
     List<CarPostDTO> getCarSales();
-    void changeCarSale(CarPostDTO carPostDTO);
+    void changeCarSale(CarPostDTO carPostDTO, Long id);
     void removerCarSale(Long carId);
 }
