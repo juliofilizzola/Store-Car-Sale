@@ -1,6 +1,7 @@
 package com.store.car.service;
 
 import com.store.car.dto.CarPostDTO;
+import com.store.car.entity.CarPostEntity;
 import com.store.car.repository.CarPostRepository;
 import com.store.car.repository.OwnerPostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class CarPostServiceImpl implements CarPostService{
     public List<CarPostDTO> getCarSales() {
         List<CarPostDTO> listCarSale = new ArrayList<>();
         carPostRepository.findAll().forEach(item -> {
-            listCarSale.add(mapCarEnityToDTO(item));
+            listCarSale.add(mapCarEntityToDTO(item));
         });
         return listCarSale;
     }
@@ -38,5 +39,17 @@ public class CarPostServiceImpl implements CarPostService{
     @Override
     public void removerCarSale(Long carId) {
 
+    }
+
+    private CarPostDTO mapCarEntityToDTO(CarPostEntity carPostEntity) {
+        return  CarPostDTO.builder()
+                .brand(carPostEntity.getBrand())
+                .city(carPostEntity.getCity())
+                .model(carPostEntity.getModel())
+                .description(carPostEntity.getDescription())
+                .engineVersion(carPostEntity.getEngine())
+                .createdDate(carPostEntity.getCreatedAt())
+                .ownerName(carPostEntity.getOwnerPost().getName())
+                .price(carPostEntity.getPrice()).build();
     }
 }
