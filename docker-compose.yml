@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  postgress:
+    image: postgres:latest
+    container_name: DB_STORE_CAR
+    restart: always
+    environment:
+      POSTGRES_USER: java
+      POSTGRES_PASSWORD: 1234567
+      POSTGRES_DB: car_post_storage
+    volumes:
+      - ./database/postgres:/data/postgres
+    ports:
+      - "4554:5432"
