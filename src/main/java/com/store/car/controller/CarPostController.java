@@ -32,6 +32,4 @@ public class CarPostController {
         carPostService.removerCarSale(Long.valueOf(id));
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
-
 }
