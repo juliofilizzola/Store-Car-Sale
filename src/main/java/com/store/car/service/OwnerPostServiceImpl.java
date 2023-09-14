@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class OwnerPostServiceImpl implements OwnerPostService {
 
@@ -35,7 +36,15 @@ public class OwnerPostServiceImpl implements OwnerPostService {
 
     @Override
     public void changeOwner(OwnerPostDTO ownerPostDTO, Long id) {
+        ownerPostRepository.findById(id).ifPresentOrElse(item -> {
+            item.setType(ownerPostDTO.getType());
+            item.setName(ownerPostDTO.getName());
+            item.setPhone(ownerPostDTO.getContactNumber());
 
+            ownerPostRepository.save(item);
+        }, () -> {
+            throw new NoSuchElementException();
+        });
     }
 
     @Override
