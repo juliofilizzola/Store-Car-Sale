@@ -5,11 +5,13 @@ import com.store.car.dto.OwnerPostDTO;
 import com.store.car.entity.OwnerPostEntity;
 import com.store.car.repository.OwnerPostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+@Service
 public class OwnerPostServiceImpl implements OwnerPostService {
 
     @Autowired
