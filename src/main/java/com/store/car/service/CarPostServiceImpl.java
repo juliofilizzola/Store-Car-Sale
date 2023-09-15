@@ -5,12 +5,14 @@ import com.store.car.entity.CarPostEntity;
 import com.store.car.repository.CarPostRepository;
 import com.store.car.repository.OwnerPostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+@Service
 public class CarPostServiceImpl implements CarPostService{
 
     @Autowired
@@ -69,12 +71,14 @@ public class CarPostServiceImpl implements CarPostService{
 
     private CarPostEntity mapCarDtoToEntity(CarPostDTO carPostDTO) {
         CarPostEntity carPostEntity = new CarPostEntity();
-
+        System.out.println("x");
         ownerPostRepository.findById(carPostDTO.getOwnerId())
                 .ifPresentOrElse( item -> {
             carPostEntity.setOwnerPost(item);
             carPostEntity.setContact(item.getPhone());
         }, () -> {
+                    System.out.println("Log aqui");
+
                throw new RuntimeException();
         });
 
