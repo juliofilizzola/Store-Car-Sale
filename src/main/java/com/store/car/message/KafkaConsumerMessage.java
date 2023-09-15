@@ -13,7 +13,6 @@ import org.springframework.stereotype.Component;
 public class KafkaConsumerMessage {
     private final Logger LOG = LoggerFactory.getLogger(KafkaConsumerMessage.class);
 
-
     @Autowired
     private CarPostService carPostService;
 
