@@ -33,6 +33,6 @@ public class CarPostEntity {
     private String contact;
 
     @ManyToOne
-    @JoinColumn(name = "owner_id", nullable = false, referencedColumnName = "d")
+    @JoinColumn(name = "owner_id", nullable = false, referencedColumnName = "id")
     private OwnerPostEntity ownerPost;
 }
